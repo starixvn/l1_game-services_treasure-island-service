@@ -1,0 +1,7 @@
+variables:
+  SMOKE_PRODUCT_NAME: TreasureIsland
+  
+include:
+  - project: "ci/repos-ci/pentagon_l1_treasure_island_service"
+    ref: master
+    file: "gitlab-ci.yml"
