@@ -1,4 +1,3 @@
-import _ from "lodash";
 import { helpers } from "sc-common";
 import { Core } from "sc-game-base";
 
@@ -42,7 +41,7 @@ export default class PlaceBetConsumer extends Core.BaseEventConsumers.PlaceBetCo
         const failedCriterion = criteria.find((criterion) => criterion.failure);
 
         if (failedCriterion) {
-            this.publisher.publishToUser(player.UID, { endBet: -1, betChoice, notice: failedCriterion.notice });
+            this.publisher.publishToUser(player.UID, { endBet: -1, notice: failedCriterion.notice });
 
             return false;
         }
@@ -51,8 +50,8 @@ export default class PlaceBetConsumer extends Core.BaseEventConsumers.PlaceBetCo
     }
 
     composeValidationCriteria(player, payload) {
-        const bettingTimeValidationCriteria = this.composeBettingTimeValidationCriteria() ?? [];
-        const betAmountValidationCriteria = this.composeBetAmountValidationCriteria(player, payload) || [];
+        const bettingTimeValidationCriteria = this.composeBettingTimeValidationCriteria();
+        const betAmountValidationCriteria = this.composeBetAmountValidationCriteria(player, payload);
         return bettingTimeValidationCriteria.concat(betAmountValidationCriteria);
     }
 
@@ -68,7 +67,10 @@ export default class PlaceBetConsumer extends Core.BaseEventConsumers.PlaceBetCo
     }
 
     composeBetAmountValidationCriteria(player, payload) {
-        const settings = this.gameData.currencyGroupGames.find((x) => x.groupId.toString() === player.session.currencyGroupId);
+        const settings = this.gameData.currencyGroupGames.find((x) => x.groupId.toString() === player.session.currencyGroupId) ?? {
+            betLevels: [],
+            coinValues: [],
+        };
         const configs = this.gameData.gameConfigs;
         const { betLevel, coinValue } = payload;
 
