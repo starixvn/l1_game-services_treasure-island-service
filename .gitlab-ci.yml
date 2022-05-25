@@ -6,13 +6,109 @@ include:
     ref: master
     file: "gitlab-ci.yml"
 
-.post_build:
-    stage: post-build
-    script:
-        - docker login -u $DOCKER_REG_USERNAME -p $DOCKER_REG_PASSWORD $DOCKER_REG_URL
-        - docker pull $CI_REGISTRY_IMAGE:$DEPLOY_ENV-$CI_REGISTRY_IMAGE_VERSION || docker pull $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION || true
-        - docker-slim build --tag $CI_REGISTRY_IMAGE:$DEPLOY_ENV-$CI_REGISTRY_IMAGE_VERSION.slim $CI_REGISTRY_IMAGE:$DEPLOY_ENV-$CI_REGISTRY_IMAGE_VERSION || docker-slim build --tag $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION.slim $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION || true
-        - docker tag $CI_REGISTRY_IMAGE:$DEPLOY_ENV-$CI_REGISTRY_IMAGE_VERSION.slim $CI_REGISTRY_IMAGE:$DEPLOY_ENV-latest || docker tag $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION.slim $CI_REGISTRY_IMAGE:$DEPLOY_ENV-latest
-        - docker push $CI_REGISTRY_IMAGE:$DEPLOY_ENV-latest
-    tags:
-        - docker
+build_image:
+  extends:
+    - .build:image:rules
+  stage: build
+  script:
+    - docker login -u $DOCKER_REG_USERNAME -p $DOCKER_REG_PASSWORD $DOCKER_REG_URL
+    - docker pull $CI_REGISTRY_IMAGE:latest || true
+    - docker build
+      --pull
+      -f $DOCKER_FILE_PATH/$DOCKER_FILE_NAME
+      --tag $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION-FAT
+      --cache-from $CI_REGISTRY_IMAGE:latest $DOCKER_FILE_PATH
+    - docker-slim build --tag $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION-FAT
+    - docker push $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION
+    - docker tag $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION $CI_REGISTRY_IMAGE:latest
+    - docker push $CI_REGISTRY_IMAGE:latest
+  tags:
+    - docker
+
+.build:default:image:
+  stage: build
+  script:
+    - echo $DOCKER_FILE_PATH
+    - ls -a
+    - docker login -u $DOCKER_REG_USERNAME -p $DOCKER_REG_PASSWORD $DOCKER_REG_URL
+    - docker pull $CI_REGISTRY_IMAGE:$DEPLOY_ENV-latest || true
+    - docker build
+      --cache-from $CI_REGISTRY_IMAGE:latest
+      -f $DOCKER_FILE_PATH/$DOCKER_FILE_NAME
+      --tag $CI_REGISTRY_IMAGE:$DEPLOY_ENV-$CI_REGISTRY_IMAGE_VERSION-FAT
+      --build-arg DEPLOY_ENV=$DEPLOY_ENV .
+    - docker-slim build --tag $CI_REGISTRY_IMAGE:$DEPLOY_ENV-$CI_REGISTRY_IMAGE_VERSION $CI_REGISTRY_IMAGE:$DEPLOY_ENV-$CI_REGISTRY_IMAGE_VERSION-FAT
+    - docker push $CI_REGISTRY_IMAGE:$DEPLOY_ENV-$CI_REGISTRY_IMAGE_VERSION
+    - docker tag $CI_REGISTRY_IMAGE:$DEPLOY_ENV-$CI_REGISTRY_IMAGE_VERSION $CI_REGISTRY_IMAGE:$DEPLOY_ENV-latest
+    - docker push $CI_REGISTRY_IMAGE:$DEPLOY_ENV-latest
+  tags:
+    - docker
+
+.build:default:image:noenv:
+  stage: build
+  script:
+    - echo $DOCKER_FILE_PATH
+    - docker login -u $DOCKER_REG_USERNAME -p $DOCKER_REG_PASSWORD $DOCKER_REG_URL
+    - docker pull $CI_REGISTRY_IMAGE:latest || true
+    - docker build
+      --pull
+      -f $DOCKER_FILE_PATH/$DOCKER_FILE_NAME
+      --tag $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION-FAT
+      --cache-from $CI_REGISTRY_IMAGE:latest $DOCKER_FILE_PATH
+    - docker-slim build --tag $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION-FAT
+    - docker push $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION
+    - docker tag $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION $CI_REGISTRY_IMAGE:latest
+    - docker push $CI_REGISTRY_IMAGE:latest
+  tags:
+    - docker
+
+.build:default:image:noenv:multistage:
+  stage: build
+  script:
+    - echo $DOCKER_FILE_PATH
+    - docker login -u $DOCKER_REG_USERNAME -p $DOCKER_REG_PASSWORD $DOCKER_REG_URL
+    - docker pull $CI_REGISTRY_IMAGE:builder || true
+    - docker build
+      --target builder
+      --cache-from $CI_REGISTRY_IMAGE:builder
+      -f $DOCKER_FILE_PATH/$DOCKER_FILE_NAME
+      --tag $CI_REGISTRY_IMAGE:builder .
+    - docker pull $CI_REGISTRY_IMAGE:latest || true
+    - docker build
+      --cache-from $CI_REGISTRY_IMAGE:builder
+      --cache-from $CI_REGISTRY_IMAGE:latest
+      -f $DOCKER_FILE_PATH/$DOCKER_FILE_NAME
+      --tag $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION-FAT .
+    - docker-slim build --tag $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION-FAT
+    - docker push $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION
+    - docker tag $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION $CI_REGISTRY_IMAGE:latest
+    - docker push $CI_REGISTRY_IMAGE:latest
+    - docker push $CI_REGISTRY_IMAGE:builder
+  tags:
+    - docker
+
+.build:default:image:multistage:
+  stage: build
+  script:
+    - echo $DOCKER_FILE_PATH
+    - docker login -u $DOCKER_REG_USERNAME -p $DOCKER_REG_PASSWORD $DOCKER_REG_URL
+    - docker pull $CI_REGISTRY_IMAGE:builder || true
+    - docker build
+      --target builder
+      --cache-from $CI_REGISTRY_IMAGE:builder
+      -f $DOCKER_FILE_PATH/$DOCKER_FILE_NAME
+      --tag $CI_REGISTRY_IMAGE:builder .
+    - docker pull $CI_REGISTRY_IMAGE:latest || true
+    - docker build
+      --cache-from $CI_REGISTRY_IMAGE:latest
+      --cache-from $CI_REGISTRY_IMAGE:builder
+      -f $DOCKER_FILE_PATH/$DOCKER_FILE_NAME
+      --tag $CI_REGISTRY_IMAGE:$DEPLOY_ENV-$CI_REGISTRY_IMAGE_VERSION-FAT
+      --build-arg DEPLOY_ENV=$DEPLOY_ENV .
+    - docker-slim build --tag $CI_REGISTRY_IMAGE:$DEPLOY_ENV-$CI_REGISTRY_IMAGE_VERSION $CI_REGISTRY_IMAGE:$DEPLOY_ENV-$CI_REGISTRY_IMAGE_VERSION-FAT
+    - docker push $CI_REGISTRY_IMAGE:$DEPLOY_ENV-$CI_REGISTRY_IMAGE_VERSION
+    - docker tag $CI_REGISTRY_IMAGE:$DEPLOY_ENV-$CI_REGISTRY_IMAGE_VERSION $CI_REGISTRY_IMAGE:$DEPLOY_ENV-latest
+    - docker push $CI_REGISTRY_IMAGE:$DEPLOY_ENV-latest
+    - docker push $CI_REGISTRY_IMAGE:builder
+  tags:
+    - docker
