@@ -15,4 +15,5 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY ./src/ .
 HEALTHCHECK --interval=10s CMD node --es-module-specifier-resolution=node healthcheck.js
 
+EXPOSE 5000
 CMD [ "node", "--es-module-specifier-resolution=node", "./app.js" ]
