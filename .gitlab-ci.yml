@@ -1,5 +1,6 @@
 variables:
   SMOKE_PRODUCT_NAME: TreasureIsland
+  DOCKER_SLIM: enable
   
 include:
   - project: "ci/repos-ci/pentagon_l1_treasure_island_service"
@@ -55,7 +56,11 @@ build_image:
       -f $DOCKER_FILE_PATH/$DOCKER_FILE_NAME
       --tag $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION-FAT
       --cache-from $CI_REGISTRY_IMAGE:latest $DOCKER_FILE_PATH
-    - docker-slim build --tag $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION-FAT
+    - if [ "$DOCKER_SLIM" == "enable" ]; then
+        docker-slim build --tag $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION-FAT;
+      else
+        docker tag $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION-FAT $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION;
+      fi;
     - docker push $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION
     - docker tag $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION $CI_REGISTRY_IMAGE:latest
     - docker push $CI_REGISTRY_IMAGE:latest
