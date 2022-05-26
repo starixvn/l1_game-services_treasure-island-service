@@ -21,7 +21,7 @@
     "type": "module",
     "dependencies": {
         "nodemon": "^2.0.4",
-        "sc-cascading-slot-base": "1.0.2-beta.12"
+        "sc-cascading-slot-base": "1.0.2-beta.13"
     },
     "devDependencies": {
         "@babel/preset-env": "^7.11.5",
