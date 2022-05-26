@@ -1,7 +1,7 @@
 import appConfigs from "./app-configs";
 
 export default {
-    id: 9999,
+    id: 47,
     name: "TreasureIsland",
     durations: {
         wholeRound: 60,
