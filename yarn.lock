@@ -8211,10 +8211,10 @@ sc-cascading-slot-base@1.0.1-beta.5:
   dependencies:
     sc-slot-game-base "1.4.1-beta.0"
 
-sc-cascading-slot-base@1.0.2-beta.18:
-  version "1.0.2-beta.18"
-  resolved "http://npm.lumigame.com/sc-cascading-slot-base/-/sc-cascading-slot-base-1.0.2-beta.18.tgz#5e19e9759bb9c7296f9545b44c8461274e5fd2ec"
-  integrity sha512-OVL32ntEZfGgsiG7J1v4VPvC9s76ycpaiRr3Fgpphf5yeUe2Si7ZTTNZruhk7t5q0+6COiTzGtMT/6ZbP0zGIA==
+sc-cascading-slot-base@1.0.2-beta.19:
+  version "1.0.2-beta.19"
+  resolved "http://npm.lumigame.com/sc-cascading-slot-base/-/sc-cascading-slot-base-1.0.2-beta.19.tgz#994756f4a396922c8c1767bc503f5bc400aba481"
+  integrity sha512-ThLP+p89+M8zX9xkryRSh8VqmlD/RbLAFoJTmDepORX3/VXqk6PW29daX1u4Hb/b/N5IQaAxcvtD1kORfYCTDA==
   dependencies:
     sc-slot-board-generator "0.0.2-beta.4"
     sc-slot-game-base "1.4.3-beta.2"
