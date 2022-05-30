@@ -1,4 +1,4 @@
-FROM registry.nexdev.net:5050/docker/node:14.15.1-slim
+FROM registry.nexdev.net:5050/docker/node:18.1-slim
 
 USER root
 
@@ -8,7 +8,7 @@ RUN mkdir /app && chown node:node /app
 
 WORKDIR /app
 COPY package.json yarn.lock ./
-RUN npm run reg \
+RUN yarn reg \
     && yarn install --production \
     && yarn cache clean
 ENV PATH /app/node_modules/.bin:$PATH
