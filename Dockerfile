@@ -8,11 +8,14 @@ RUN mkdir /app && chown node:node /app
 
 WORKDIR /app
 COPY package.json yarn.lock ./
-RUN npm run reg
-RUN yarn install --production
+RUN npm run reg \
+    && yarn install --production \
+    && yarn cache clean
 ENV PATH /app/node_modules/.bin:$PATH
 
 COPY ./src/ .
 HEALTHCHECK --interval=10s CMD node --es-module-specifier-resolution=node healthcheck.js
+
+USER node
 
 CMD [ "node", "--es-module-specifier-resolution=node", "./app.js" ]
