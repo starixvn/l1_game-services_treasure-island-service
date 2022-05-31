@@ -8211,12 +8211,12 @@ sc-cascading-slot-base@1.0.1-beta.5:
   dependencies:
     sc-slot-game-base "1.4.1-beta.0"
 
-sc-cascading-slot-base@1.0.2-beta.30:
-  version "1.0.2-beta.30"
-  resolved "http://npm.lumigame.com/sc-cascading-slot-base/-/sc-cascading-slot-base-1.0.2-beta.30.tgz#7d9482eeb8488d57fcaa6e6c4553b630cc67aefc"
-  integrity sha512-y21WWRYtCqvMdvGyW3c3hvXYWSwN6akp2JzQoDZw60RXiE+j0Js77CrM0YP9Rfppa9Uj1o7XR9KUFgY3Kdammw==
+sc-cascading-slot-base@1.0.2-beta.31:
+  version "1.0.2-beta.31"
+  resolved "http://npm.lumigame.com/sc-cascading-slot-base/-/sc-cascading-slot-base-1.0.2-beta.31.tgz#bffc7c960c41439cb77a077079d68efa104d875c"
+  integrity sha512-NI6gYKyqhAtVHM/2adZ3mimDsYsXw7/0rLmtnTdleJ0E1bEKfNfRIhcXCtJ8hAh/brPv+GVPCo9WG+f3Btyayg==
   dependencies:
-    sc-slot-board-generator "0.0.2-beta.7"
+    sc-slot-board-generator "0.0.2-beta.8"
     sc-slot-game-base "1.4.3-beta.2"
 
 sc-common@1.8.1:
@@ -8283,10 +8283,10 @@ sc-semantic-release@^1.1.0:
   resolved "http://npm.lumigame.com/sc-semantic-release/-/sc-semantic-release-1.2.0.tgz#52ea7bd1aa4d5c41315a16c2c4e4f0437befdbcb"
   integrity sha512-izZqZiS8hL05cGzYbcR3+GZ1Oktr9rU1nIL05S9mZnEBm5nZfqzRkSpR2OHVJARjYsMI5dps0oUX1HjFV9x47w==
 
-sc-slot-board-generator@0.0.2-beta.7:
-  version "0.0.2-beta.7"
-  resolved "http://npm.lumigame.com/sc-slot-board-generator/-/sc-slot-board-generator-0.0.2-beta.7.tgz#69baffa6fda161ff0dd7c11ae509d8cabd584293"
-  integrity sha512-E8bvhfstYoqpSDOI6TVkrjTgioNwUW2szQq4MaABxd58bH4TTbYHyC1s4RZJT/AqNQoLlLJH2j4CAFX859vtSA==
+sc-slot-board-generator@0.0.2-beta.8:
+  version "0.0.2-beta.8"
+  resolved "http://npm.lumigame.com/sc-slot-board-generator/-/sc-slot-board-generator-0.0.2-beta.8.tgz#814b2d36a1c370a8ede3bb3280daaac484170bcc"
+  integrity sha512-HEr3bkJXvyK5W1qyM0VP+zDEJJClRYm+huChM4KB8QiH+F9Cag4ysivLcu5OfKDQ3zLw0F12x9/MsHhTMdiJvQ==
   dependencies:
     chance "^1.1.7"
     ramda "^0.28.0"
