@@ -21,7 +21,6 @@ export default class GameStartup extends Core.BaseStartup {
         });
 
         socketServer.of(`/trial/${gameNameInSocketNamespace}`).on("connection", (socketClient) => {
-            this.initSocketRouter(socketClient);
             this.treasureIslandTrialMode.registerSocketEvent(socketClient);
         });
 

@@ -13,10 +13,6 @@ export default class TreasureIslandTrialMode {
     }
 
     registerSocketEvent(socketClient) {
-        socketClient.removeAllListeners("inGame");
-        socketClient.removeAllListeners("bet");
-        socketClient.removeAllListeners("disconnect");
-
         this.trialMode.registerSocketHandler(socketClient);
     }
 }
