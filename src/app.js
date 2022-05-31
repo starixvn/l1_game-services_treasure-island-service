@@ -1,10 +1,10 @@
-import { Core } from "sc-game-base";
+import GameApp from "./game-app";
 import { SlotGameData, SlotGameDefinition } from "sc-slot-game-base";
 import appConfigs from "./app-configs";
 import TreasureIslandContainerRegistry from "./treasure-island-container-registry";
 import gameSettings from "./game-settings";
 
-class App extends Core.BaseGameApp {
+class App extends GameApp {
     async configureServices(app) {
         await super.configureServices(app);
     }
