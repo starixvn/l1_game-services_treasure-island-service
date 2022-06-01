@@ -21,7 +21,7 @@
     "type": "module",
     "dependencies": {
         "nodemon": "^2.0.4",
-        "sc-cascading-slot-base": "1.0.2-beta.32",
+        "sc-cascading-slot-base": "1.0.2-beta.33"
         "sc-trial-mode": "0.0.1-beta.6"
     },
     "devDependencies": {
