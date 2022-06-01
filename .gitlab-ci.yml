@@ -1,6 +1,5 @@
 variables:
   SMOKE_PRODUCT_NAME: TreasureIsland
-  DOCKER_SLIM: enable
   
 include:
   - project: "ci/repos-ci/pentagon_l1_treasure_island_service"
