@@ -56,7 +56,7 @@ build_image:
       --tag $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION-FAT
       --cache-from $CI_REGISTRY_IMAGE:latest $DOCKER_FILE_PATH
     - if [ "$DOCKER_SLIM" == "enable" ]; then
-        docker-slim build --tag $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION-FAT;
+        docker-slim build --include-path-file docker-slim-include-path --tag $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION-FAT;
       else
         docker tag $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION-FAT $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION;
       fi;

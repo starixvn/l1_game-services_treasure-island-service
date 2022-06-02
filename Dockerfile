@@ -5,7 +5,7 @@ ENV NODE_ENV $NODE_ENV
 RUN mkdir /app && chown node:node /app
 
 WORKDIR /app
-COPY package.json yarn.lock ./
+COPY package.json yarn.lock docker-slim-include-path ./
 
 USER node
 RUN npm run reg \
