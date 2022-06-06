@@ -49,7 +49,7 @@ afterAll(() => {
     processStartService.kill();
 });
 
-describe("SeDie Service", () => {
+describe("TreasureIsland Service", () => {
     describe("when sign in successful", () => {
         it("should receive signed in response", (done) => {
             // Assert
@@ -199,14 +199,11 @@ describe("SeDie Service", () => {
             normalUserClientDriver.handleInGameEvent((inGameData) => {
                 if (inGameData?.user?.UID) {
                     expect(inGameData.user).toStrictEqual(expectedUser);
-
                     done();
                 }
             });
         });
     });
-
- 
 });
 
 const initUserSession = (user) => {
