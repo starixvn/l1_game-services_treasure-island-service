@@ -1,4 +1,3 @@
-import { Core } from "sc-game-base";
 import { SlotGameData, SlotGameDefinition } from "sc-slot-game-base";
 import { initAPIStub } from "sc-game-service-integration-utils";
 

@@ -190,7 +190,7 @@ const rounds = [
 ];
 
 const socketOptions = {
-    socketUri: "http://localhost:5001/user/hilo",
+    socketUri: "http://localhost:5001/user/treasureisland",
     gameName: game.name,
     proxyRoute: "/socket.io",
 };
