@@ -1,6 +1,6 @@
-import { spawn } from "child_process";
+const { spawn } = require("child_process");
 
-export const startSetupDataProcess = (onSetupDone) => {
+const startSetupDataProcess = (onSetupDone) => {
     const setupDataProcess = spawn("node", ["--es-module-specifier-resolution=node", "./tests/integration-tests/stubs/test-data-setup.js"]);
 
     setupDataProcess.stdout.on("data", (data) => {
@@ -19,7 +19,7 @@ export const startSetupDataProcess = (onSetupDone) => {
     return setupDataProcess;
 };
 
-export const startServiceProcess = (onServiceStarted) => {
+const startServiceProcess = (onServiceStarted) => {
     const serviceProcess = spawn("node", [
         "--es-module-specifier-resolution=node",
         "./tests/integration-tests/game-service-setup/game-service-app.js",
@@ -41,4 +41,12 @@ export const startServiceProcess = (onServiceStarted) => {
     });
 
     return serviceProcess;
+};
+
+module.exports = function () {
+    startSetupDataProcess(() => {
+        globalThis.processStartService = startServiceProcess(() => {
+            console.log("Start service job done!");
+        });
+    });
 };
