@@ -1,6 +1,6 @@
 const game = {
     id: 47,
-    name: "treasureisland",
+    name: "TreasureIsland",
 };
 
 const gameConfig = {

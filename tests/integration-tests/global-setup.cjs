@@ -43,10 +43,13 @@ const startServiceProcess = (onServiceStarted) => {
     return serviceProcess;
 };
 
-module.exports = function () {
-    startSetupDataProcess(() => {
-        globalThis.processStartService = startServiceProcess(() => {
-            console.log("Start service job done!");
+module.exports = async function () {
+    return new Promise(function (resolve) {
+        startSetupDataProcess(() => {
+            globalThis.processStartService = startServiceProcess(() => {
+                console.log("Start service job done!");
+                resolve();
+            });
         });
     });
 };
