@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import { middlewares } from "sc-common";
 import {
-    createCurrencyGroupGames,
     createDummyCurrency,
     createDummyUsers,
     createExchangeRate,
@@ -9,6 +8,8 @@ import {
     createPartnerConfig,
 } from "sc-game-service-integration-utils";
 import { createDummyUsers as createCascadingSlotDummyUsers } from "./user-stub";
+import { createCurrencyGroupGames } from "./currency-group-games-stub";
+import { stubHistoryData } from "./history-query-stubs";
 
 import configs from "../../../src/app-configs";
 import { TreasureIslandRounds, TreasureIslandTotalMultipliers, TreasureIslandFreeSpins } from "../../../src/models";
@@ -39,6 +40,7 @@ const createTestData = async () => {
     await createRounds();
     await createPlayerFreeSpins();
     await createPlayerMultipliers();
+    await stubHistoryData(currency);
 
     console.log("Create game config & dummy user for testing successfully!");
 
