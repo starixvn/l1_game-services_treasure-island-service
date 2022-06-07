@@ -189,10 +189,44 @@ const rounds = [
     },
 ];
 
+const currentTime = new Date();
+const freeSpinsExpiredTime = new Date(currentTime.getTime() + 60 * 1000);
+
+const playerFreeSpins = [
+    {
+        available: 2,
+        memberId: 2,
+        name: "HaveTotalMultiplierUser",
+        playerId: 2,
+        id: 1,
+        uid: "HaveTotalMultiplierUser",
+        roundId: 1,
+        bet: 20,
+        total: 5,
+        time: currentTime,
+        expiryTime: freeSpinsExpiredTime,
+        betLevel: 1,
+        betMultiplier: 20,
+        coinValue: 1,
+    },
+];
+
+const playerMultipliers = [
+    {
+        uid: "HaveTotalMultiplierUser",
+        playerId: 2,
+        name: "HaveTotalMultiplierUser",
+        time: currentTime,
+        rounds: [{ prevTotalMultiplier: 0, totalMultiplier: 2, multiplier: 2, time: currentTime, roundId: 1 }],
+        ended: false,
+        endTime: freeSpinsExpiredTime,
+    },
+];
+
 const socketOptions = {
     socketUri: "http://localhost:5001/user/treasureisland",
     gameName: game.name,
     proxyRoute: "/socket.io",
 };
 
-export { game, gameConfig, currencyData, rounds, socketOptions };
+export { game, gameConfig, currencyData, rounds, socketOptions, playerFreeSpins, playerMultipliers };

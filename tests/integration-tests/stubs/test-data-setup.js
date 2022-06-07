@@ -8,10 +8,11 @@ import {
     createGameConfig,
     createPartnerConfig,
 } from "sc-game-service-integration-utils";
+import { createDummyUsers as createCascadingSlotDummyUsers } from "./user-stub";
 
 import configs from "../../../src/app-configs";
-import { TreasureIslandRounds } from "../../../src/models";
-import { game, gameConfig, currencyData, rounds } from "./test-data";
+import { TreasureIslandRounds, TreasureIslandTotalMultipliers, TreasureIslandFreeSpins } from "../../../src/models";
+import { game, gameConfig, currencyData, rounds, playerFreeSpins, playerMultipliers } from "./test-data";
 
 const connectDatabase = async () => {
     await middlewares.database.configureDatabase(mongoose, configs.database);
@@ -34,7 +35,10 @@ const createTestData = async () => {
     const currency = await createDummyCurrency(partnerConfig.partnerId, currencyData.code, currencyData.name);
     await createCurrencyGroupGames(currency.groupId, game.id, gameConfig);
     await createDummyUsers(currency);
+    await createCascadingSlotDummyUsers(currency);
     await createRounds();
+    await createPlayerFreeSpins();
+    await createPlayerMultipliers();
 
     console.log("Create game config & dummy user for testing successfully!");
 
@@ -43,6 +47,14 @@ const createTestData = async () => {
 
 const createRounds = async () => {
     return TreasureIslandRounds.insertMany(rounds);
+};
+
+const createPlayerFreeSpins = async () => {
+    return TreasureIslandFreeSpins.insertMany(playerFreeSpins);
+};
+
+const createPlayerMultipliers = async () => {
+    return TreasureIslandTotalMultipliers.insertMany(playerMultipliers);
 };
 
 createTestData();

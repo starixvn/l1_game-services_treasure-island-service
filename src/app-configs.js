@@ -1,5 +1,5 @@
 export default {
-    hostingPort: 5000,
+    hostingPort: 5001,
     apiSettings: {
         enabledApi: true,
         apiUrl: "http://api.lumigame.com",
@@ -44,7 +44,7 @@ export default {
     database: {
         url: "mongodb://127.0.0.1:27017",
         options: {
-            dbName: "minigame",
+            dbName: "minigame2",
             useNewUrlParser: true,
             useUnifiedTopology: true,
             auto_reconnect: true,

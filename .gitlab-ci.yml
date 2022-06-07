@@ -116,3 +116,44 @@ build_image:
     - docker push $CI_REGISTRY_IMAGE:builder
   tags:
     - docker
+
+integration-tests:
+  stage: test
+  needs: ['unit-test-js']
+  tags:
+    - docker
+
+  services:
+    - name: registry.nexdev.net:5050/docker/database/mongo:4.4.8
+      alias: mongo
+      
+  image: registry.nexdev.net:5050/docker/node:14.15.1-slim
+  before_script:
+    - cp ./src/app-configs.js ./src/app-configs.original.js
+    - cp ./configs/app-configs.IGT.js ./src/app-configs.js
+    - npm set registry http://npm.lumigame.com
+    - yarn install
+
+  script:
+    - npm run integration-test
+
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS'
+      when: never
+    - if: '$CI_COMMIT_BRANCH'
+
+  artifacts:
+    when: always
+    paths:
+      - ./coverage
+    reports:
+      junit:
+        - junit.xml
+    expire_in: 1 day
+
+unit-test-js:
+  artifacts:
+    reports:
+      junit: coverage/*.xml
+      cobertura: coverage/cobertura-coverage.xml
