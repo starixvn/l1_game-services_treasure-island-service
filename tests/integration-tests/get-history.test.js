@@ -3,13 +3,7 @@ import { socketOptions } from "./stubs/test-data";
 import { initUserSession } from "./helpers";
 import { queryHistoryUser } from "./stubs/history-query-stubs";
 
-const JEST_ASSERT_WAITING_RESPONSE_TIMEOUT = 70000;
-
 describe("event get history", () => {
-    beforeAll(() => {
-        jest.setTimeout(JEST_ASSERT_WAITING_RESPONSE_TIMEOUT);
-    });
-
     describe("when page = 0", () => {
         it("should return empty details", async (done) => {
             // Arrange
