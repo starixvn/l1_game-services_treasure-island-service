@@ -4,7 +4,7 @@ import { initUserSession } from "./helpers";
 
 describe("when client sends place bet request", () => {
     let driver;
-    beforeAll((done) => {
+    beforeEach((done) => {
         driver = new GameClientDriver(socketOptions, initUserSession(normalUser));
         driver.handleSignedInEvent(() => {
             driver.sendInGameEvent();
@@ -12,14 +12,28 @@ describe("when client sends place bet request", () => {
         });
     });
 
-    afterAll(() => {
+    afterEach(() => {
         driver.close();
     });
 
     it("should return finish", (done) => {
+        //Act
         driver.emit("bet", { betLevel: 1, coinValue: 1, totalBet: 20, freeSpin: false });
+
+        //Assert
         driver.on(driver.gameName, (data) => {
             expect(data.finish).not.toBeNull();
+            done();
+        });
+    });
+
+    it("should return endBet", (done) => {
+        //Act
+        driver.emit("bet", { betLevel: 1, coinValue: 1, totalBet: 20, freeSpin: false });
+
+        //Assert
+        driver.on(driver.gameName, (data) => {
+            expect(data.endBet).not.toBeNull();
             done();
         });
     });
