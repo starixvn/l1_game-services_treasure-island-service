@@ -44,7 +44,7 @@ export default {
     database: {
         url: "mongodb://127.0.0.1:27017",
         options: {
-            dbName: "minigame2",
+            dbName: "minigame",
             useNewUrlParser: true,
             useUnifiedTopology: true,
             auto_reconnect: true,
