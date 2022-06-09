@@ -8321,10 +8321,10 @@ sc-slot-game-base@1.4.3-beta.3:
     lodash "^4.17.20"
     sc-game-base "3.0.2-beta.1"
 
-sc-trial-mode@0.0.1-beta.7:
-  version "0.0.1-beta.7"
-  resolved "http://npm.lumigame.com/sc-trial-mode/-/sc-trial-mode-0.0.1-beta.7.tgz#4307fc3a4878050b76f3bb9d8558e182499357d3"
-  integrity sha512-LyZy4guUYoent1vffpt5qlCy90fPhKroWpNhDEvNnBZm3dS2UHrxRMaz6LJhERefKwE4HeOwuay+TEk5rSFbTg==
+sc-trial-mode@0.0.1-beta.8:
+  version "0.0.1-beta.8"
+  resolved "http://npm.lumigame.com/sc-trial-mode/-/sc-trial-mode-0.0.1-beta.8.tgz#f6b5a58877819ebf6dc4245d910d23fa84cda8b5"
+  integrity sha512-zT/v3YCUvr880PhZp8yyZ/qA3ENwA0FDL7BVzyFlM7H/jkSVewpycQJ+JU59wUXKnxOtBmLzqTYEqPQutfrkNg==
 
 semantic-release@^17.1.1:
   version "17.4.7"
