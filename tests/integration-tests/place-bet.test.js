@@ -1,4 +1,4 @@
-import { GameClientDriver, normalUser } from "sc-game-service-integration-utils";
+import { GameClientDriver } from "sc-game-service-integration-utils";
 import { gameConfigs } from "sc-base-database";
 
 import { socketOptions } from "./stubs/test-data";

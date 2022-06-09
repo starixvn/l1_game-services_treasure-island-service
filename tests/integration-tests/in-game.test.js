@@ -204,7 +204,7 @@ describe("event ingame", () => {
             });
         });
 
-        it("should return totalMultiplier = 0", (done) => {
+        it("should return totalMultiplier", (done) => {
             // Arrange
             let userClientDriver = new GameClientDriver(socketOptions, initUserSession(haveTotalMultiplierUser));
             userClientDriver.handleSignedInEvent(() => {
@@ -223,6 +223,7 @@ describe("event ingame", () => {
             userClientDriver.handleInGameEvent((inGameData) => {
                 if (inGameData?.gameConfigs) {
                     expect(inGameData.totalMultiplier).toBe(expectedValue);
+                    userClientDriver.close();
                     done();
                 }
             });
