@@ -1,5 +1,5 @@
 export default {
-    hostingPort: 5000,
+    hostingPort: 7456,
     apiSettings: {
         enabledApi: true,
         apiUrl: "http://api.lumigame.com",
@@ -33,6 +33,10 @@ export default {
         },
         requestTimeout: 10000,
         useAuthenticate: true,
+    },
+    userServiceSettings: {
+        url: "https://l1-proxy.lumigame.com/user",
+        requestTimeout: 10000,
     },
     socketOptions: {
         pingInterval: 60 * 1000,
