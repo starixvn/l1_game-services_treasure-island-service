@@ -25,7 +25,7 @@ const trace = new NodeSDK({
     }),
     instrumentations: [
         new HttpInstrumentation({
-            ignoreOutgoingRequestHook: (req) => {
+            ignoreIncomingRequestHook: (req) => {
                 return req.hostname.includes("health");
             },
         }),
