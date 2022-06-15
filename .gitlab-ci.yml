@@ -6,6 +6,21 @@ include:
     ref: docker-slim
     file: "gitlab-ci.yml"
 
+.build:default:image:noenv:
+  stage: build
+  script:
+    - echo $DOCKER_FILE_PATH
+    - docker login -u $DOCKER_REG_USERNAME -p $DOCKER_REG_PASSWORD $DOCKER_REG_URL
+    - docker pull $CI_REGISTRY_IMAGE:latest || true
+    - if [ "$DOCKER_SLIM" == "enable" ]; then
+        docker-slim build --dockerfile $DOCKER_FILE_NAME --include-path-file $DOCKER_SLIM_PATH_FILE_NAME --cbo-cache-from $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION --tag $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION .;
+      else
+        docker build --pull -f $DOCKER_FILE_PATH/$DOCKER_FILE_NAME --tag $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION --cache-from $CI_REGISTRY_IMAGE:latest $DOCKER_FILE_PATH;
+      fi;
+    - docker push $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION
+  tags:
+    - docker
+
 integration-tests:
   stage: test
   needs: ['unit-test-js']
