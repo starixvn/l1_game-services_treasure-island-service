@@ -15,13 +15,10 @@ export default {
         hitJackpotTimeout: 200000,
         enabledApiLogs: true,
     },
-    mainServerApiSettings: {
-        url: "http://l1_game_server_local_2:5000/api",
-        auth: {
-            url: "http://l1_auth_api_local_2:5000",
-            id: "game-services",
-            secret: "gameservices@20luminet&",
-        },
+    authSettings: {
+        url: "http://l1_auth_api_local_2:5000",
+        id: "game-services",
+        secret: "gameservices@20luminet&",
         requestTimeout: 10000,
         useAuthenticate: true,
     },

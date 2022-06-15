@@ -14,28 +14,15 @@ export default {
         hitJackpotTimeout: 200000,
         enableApiLogs: true,
     },
-    mainServerApiSettings: {
-        url: "http://localhost:8080/api",
-        auth: {
-            url: "http://auth.lumigame.com",
-            id: "game-services",
-            secret: "gameservices@20luminet&",
-        },
-        requestTimeout: 10000,
-        useAuthenticate: true,
-    },
-    notificationApiSettings: {
-        url: "http://localhost:8004/api",
-        auth: {
-            url: "http://auth.lumigame.com",
-            id: "game-services",
-            secret: "gameservices@20luminet&",
-        },
+    authSettings: {
+        url: "http://auth.lumigame.com",
+        id: "game-services",
+        secret: "gameservices@20luminet&",
         requestTimeout: 10000,
         useAuthenticate: true,
     },
     userServiceSettings: {
-        url: "https://l1-proxy.lumigame.com/user",
+        url: "http://127.0.0.1:5000",
         requestTimeout: 10000,
     },
     socketOptions: {
@@ -46,9 +33,9 @@ export default {
     },
     enabledLogs: true,
     database: {
-        url: "mongodb://127.0.0.1:27017",
+        url: "mongodb://lmn_backend:LmnBackend@10.10.50.13:27101/?replicaSet=L1Local",
         options: {
-            dbName: "minigame2",
+            dbName: "minigame",
             useNewUrlParser: true,
             useUnifiedTopology: true,
             auto_reconnect: true,
