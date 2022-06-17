@@ -8281,10 +8281,10 @@ sc-base-database@1.10.1-beta.0:
     mongoose "^5.9.25"
     sc-common "1.8.1"
 
-sc-cascading-slot-base@1.0.2-beta.48:
-  version "1.0.2-beta.48"
-  resolved "http://npm.lumigame.com/sc-cascading-slot-base/-/sc-cascading-slot-base-1.0.2-beta.48.tgz#9deaa41c75be081bb28740731ad14beddf128130"
-  integrity sha512-1s4LLguZMuCZvK35Y7BTSM6dQK9xlJ2b4ZXAs0YbWAnaMy7bdzZbgedZdKUD8jhdSbI5c6eK/pWKTQXSA0rfKA==
+sc-cascading-slot-base@1.0.2-beta.49:
+  version "1.0.2-beta.49"
+  resolved "http://npm.lumigame.com/sc-cascading-slot-base/-/sc-cascading-slot-base-1.0.2-beta.49.tgz#869e2404f30821e3dab22a94855e6c3ab3edc5e8"
+  integrity sha512-2EqZumLwNyljwnloHD3gNEzGh8/WM/cMWHAfygzGMFRUtOVm86BUqqDuJ2+4WdOyhv/DbkMQKsZi8DsVV3gpMQ==
   dependencies:
     mathjs "^10.6.1"
     sc-slot-board-generator "0.0.2-beta.12"
@@ -8357,10 +8357,10 @@ sc-slot-game-base@1.4.3-beta.3:
     lodash "^4.17.20"
     sc-game-base "3.0.2-beta.1"
 
-sc-trial-mode@0.0.1-beta.10:
-  version "0.0.1-beta.10"
-  resolved "http://npm.lumigame.com/sc-trial-mode/-/sc-trial-mode-0.0.1-beta.10.tgz#7c6537c9cbc23c19f402194143e5d6e686a4694f"
-  integrity sha512-4gSu0ujq85m6p97k1MbDzXV5DlzIvJmNt1+AKsiqaGQB5JZ4LxCXOiWDfMqi+Co/Hp3GXIW6lmuQNraptq+jsw==
+sc-trial-mode@0.0.1-beta.8:
+  version "0.0.1-beta.8"
+  resolved "http://npm.lumigame.com/sc-trial-mode/-/sc-trial-mode-0.0.1-beta.8.tgz#f6b5a58877819ebf6dc4245d910d23fa84cda8b5"
+  integrity sha512-zT/v3YCUvr880PhZp8yyZ/qA3ENwA0FDL7BVzyFlM7H/jkSVewpycQJ+JU59wUXKnxOtBmLzqTYEqPQutfrkNg==
 
 seedrandom@^3.0.5:
   version "3.0.5"
