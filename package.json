@@ -23,7 +23,7 @@
     "dependencies": {
         "nodemon": "^2.0.4",
         "sc-cascading-slot-base": "1.0.2-beta.50",
-        "sc-trial-mode": "0.0.1-beta.10"
+        "sc-trial-mode": "0.0.1-beta.11"
     },
     "devDependencies": {
         "@babel/preset-env": "^7.11.5",
