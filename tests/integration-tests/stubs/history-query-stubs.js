@@ -1,12 +1,31 @@
 import { createDummyUser } from "sc-game-service-integration-utils";
 import { TreasureIslandRounds, TreasureIslandTotalMultipliers } from "../../../src/models";
 
-export const queryHistoryUser = { memberId: 3, memberName: "QueryHistoryUser" };
+export const queryHistoryUser = { memberId: 3, memberName: "QueryHistoryUser", UID: "" };
+
+export const playerMultipliers = {
+    _id: "62b2b4a962eb9107dc13a016",
+    playerId: 6,
+    time: "2022-06-22T06:16:07.186Z",
+    uid: "UID",
+    rounds: [
+        {
+            prevTotalMultiplier: 0,
+            totalMultiplier: 2,
+            multiplier: 2,
+            time: "2022-06-22T06:16:07.186Z",
+            roundId: 6,
+        },
+    ],
+    ended: true,
+    endTime: "2022-06-22T06:17:07.186Z",
+};
 
 export const stubHistoryData = async (currency) => {
     const { userInfo, userSession } = await createDummyUser(queryHistoryUser.memberId, queryHistoryUser.memberName, currency);
 
     queryHistoryUser.UID = userSession.userId;
+    playerMultipliers.name = userSession.playerName;
 
     const rounds = [
         {
@@ -200,20 +219,5 @@ export const stubHistoryData = async (currency) => {
     ];
 
     await TreasureIslandRounds.insertMany(rounds);
-
-    const currentTime = new Date();
-    const freeSpinsExpiredTime = new Date(currentTime.getTime() + 60 * 1000);
-    const playerMultipliers = [
-        {
-            uid: userSession.userId,
-            playerId: 6,
-            name: userSession.playerName,
-            time: currentTime,
-            rounds: [{ prevTotalMultiplier: 0, totalMultiplier: 2, multiplier: 2, time: currentTime, roundId: 6 }],
-            ended: true,
-            endTime: freeSpinsExpiredTime,
-        },
-    ];
-
-    return TreasureIslandTotalMultipliers.insertMany(playerMultipliers);
+    return TreasureIslandTotalMultipliers.insertMany([playerMultipliers]);
 };

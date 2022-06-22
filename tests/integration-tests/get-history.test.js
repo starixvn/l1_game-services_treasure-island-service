@@ -1,7 +1,7 @@
 import { GameClientDriver } from "sc-game-service-integration-utils";
 import { socketOptions } from "./stubs/test-data";
 import { initUserSession } from "./helpers";
-import { queryHistoryUser } from "./stubs/history-query-stubs";
+import { queryHistoryUser, playerMultipliers } from "./stubs/history-query-stubs";
 
 describe("event get history", () => {
     describe("when page = 0", () => {
@@ -29,6 +29,7 @@ describe("event get history", () => {
         it("should return details", async (done) => {
             // Arrange
             let gameClientDriver = new GameClientDriver(socketOptions, initUserSession(queryHistoryUser));
+
             const expectedValue = {
                 history: {
                     betLogs: [
@@ -40,6 +41,7 @@ describe("event get history", () => {
                             freeSpin: true,
                             id: 6,
                             multiplier: 0,
+                            reachMaxWin: false,
                             time: "2022-06-03T07:32:21.142Z",
                             settlementResult: {
                                 freeSpins: {
@@ -57,6 +59,7 @@ describe("event get history", () => {
                             },
                             totalAmount: 20,
                             totalMultiplier: 0,
+
                             totalTumbleWin: 0,
                         },
                         {
@@ -67,6 +70,7 @@ describe("event get history", () => {
                             freeSpin: false,
                             id: 5,
                             multiplier: 0,
+                            reachMaxWin: false,
                             time: "2022-06-03T07:32:21.142Z",
                             settlementResult: {
                                 freeSpins: {
@@ -84,6 +88,7 @@ describe("event get history", () => {
                             },
                             totalAmount: 20,
                             totalMultiplier: 0,
+
                             totalTumbleWin: 0,
                         },
                     ],
