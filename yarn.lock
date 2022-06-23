@@ -8357,10 +8357,10 @@ sc-slot-game-base@1.4.3-beta.3:
     lodash "^4.17.20"
     sc-game-base "3.0.2-beta.1"
 
-sc-trial-mode@0.0.1-beta.11:
-  version "0.0.1-beta.11"
-  resolved "http://npm.lumigame.com/sc-trial-mode/-/sc-trial-mode-0.0.1-beta.11.tgz#aecf42c8b067d4df834f6c7c2776e7a70d07b055"
-  integrity sha512-UwQC4OWFAp7v5qF49Z6BdkLj+boKrWsegHh/OfyWrQ9jIiDrElqO3JEzcTM7wv3DSOahgGBx72KMSRiSiu6m+w==
+sc-trial-mode@0.0.1-beta.12:
+  version "0.0.1-beta.12"
+  resolved "http://npm.lumigame.com/sc-trial-mode/-/sc-trial-mode-0.0.1-beta.12.tgz#cc5e00035448f66a9677992370fa1b73543b14d4"
+  integrity sha512-b2pdQDI6sbQIrfgCbOPaqiPyt5kOUNa719ytwIXnrufOP804bhfEoW9wL7tyVkFXBXbkCqunexr9MJcFfLjBWg==
 
 seedrandom@^3.0.5:
   version "3.0.5"
