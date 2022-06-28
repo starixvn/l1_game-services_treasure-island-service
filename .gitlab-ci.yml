@@ -5,45 +5,9 @@ include:
   - project: "ci/repos-ci/pentagon_l1_treasure_island_service"
     ref: master
     file: "gitlab-ci.yml"
-
-
-.build:default:image:noenv:
-  stage: build
-  script:
-    - echo $DOCKER_FILE_PATH
-    - echo $DEPLOY_ENV
-    - echo $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION
-    - docker login -u $DOCKER_REG_USERNAME -p $DOCKER_REG_PASSWORD $DOCKER_REG_URL
-    - docker pull $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION || true
-    - docker build
-      --pull
-      -f $DOCKER_FILE_PATH/$DOCKER_FILE_NAME
-      --tag $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION
-      --cache-from $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION $DOCKER_FILE_PATH
-    - docker push $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION
-  tags:
-    - docker
-.build:default:image:noenv:multistage:
-  stage: build
-  script:
-    - echo $DOCKER_FILE_PATH
-    - docker login -u $DOCKER_REG_USERNAME -p $DOCKER_REG_PASSWORD $DOCKER_REG_URL
-    - docker pull $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION-builder || true
-    - docker build
-      --target builder
-      --cache-from $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION-builder
-      -f $DOCKER_FILE_PATH/$DOCKER_FILE_NAME
-      --tag $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION-builder .
-    - docker pull $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION || true
-    - docker build
-      --cache-from $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION-builder
-      --cache-from $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION
-      -f $DOCKER_FILE_PATH/$DOCKER_FILE_NAME
-      --tag $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION .
-    - docker push $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION
-    - docker push $CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_VERSION-builder
-  tags:
-    - docker
+  - project: 'ci/common-ci'
+    ref: docker-enhancement
+    file: 'docker/base/build-docker-image-service.gitlab-ci.yml'
 
 integration-tests:
   stage: test
