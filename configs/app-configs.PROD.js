@@ -9,20 +9,10 @@ export default {
             secret: "gameserver@20luminet&",
         },
         useAuthenticate: true,
-        placeBetTimeout: 4500,
-        requestTimeout: 10000, // 10s
         hitJackpotTimeout: 200000,
+        placeBetTimeout: 4000,
+        requestTimeout: 10000, // 10s
         enabledApiLogs: true,
-    },
-    mainServerApiSettings: {
-        url: "http://l1_game_server_prod:5000/api",
-        auth: {
-            url: "http://l1_auth_api_prod:5000",
-            id: "game-services",
-            secret: "gameservices@20luminet&",
-        },
-        requestTimeout: 10000,
-        useAuthenticate: true,
     },
     socketOptions: {
         pingInterval: 60 * 1000,
@@ -47,10 +37,19 @@ export default {
         env: "PROD",
     },
     authenticateSettings: {
+        url: "http://l1_auth_api_prod:5000",
+        id: "game-services",
+        secret: "gameservices@20luminet&",
+        requestTimeout: 10000,
+        useAuthenticate: true,
         audiences: ["api", "admin-api"],
+    },
+    userServiceSettings: {
+        url: "http://l1_user_service_prod:5000",
     },
     adminSecretKey: "asWDEer4yGdgsdqR4uqmKQZgh",
     enableCorsWs: true,
+    freeSpinLiveSeconds: 86400, // 1 day
     corsUrls: [
         "http://sabagame.com",
         "http://www.sabagame.com",
@@ -65,8 +64,6 @@ export default {
         "http://adm.sabagame.com",
         "https://adm.sabagame.com",
     ],
-    freeSpinLiveSeconds: 86400, // 1 day
-    bonusLiveSeconds: 127,
     metrics: {
         enable: true,
         secretKey: "30d15293-c7de-4c77-9293-b85d6c5bfe1a",

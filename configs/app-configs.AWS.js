@@ -2,8 +2,8 @@ export default {
     hostingPort: 5000,
     apiSettings: {
         enabledApi: true,
-        apiUrl: "http://l2_game_api_AWS:5000",
-        authUrl: "http://l2_auth_api_AWS:5000",
+        apiUrl: "http://l1_game_api_AWS:5000",
+        authUrl: "http://l1_auth_api_AWS:5000",
         client: {
             id: "game-server",
             secret: "gameserver@20luminet&",
@@ -14,20 +14,10 @@ export default {
         hitJackpotTimeout: 200000,
         enabledApiLogs: true,
     },
-    mainServerApiSettings: {
-        url: "http://l2_games_server_AWS:5000/api",
-        auth: {
-            url: "http://l2_auth_api_AWS:5000",
-            id: "game-services",
-            secret: "gameservices@20luminet&",
-        },
-        requestTimeout: 10000,
-        useAuthenticate: true,
-    },
     notificationApiSettings: {
-        url: "http://l2_notification_service_AWS:5000/api",
+        url: "http://l1_notification_service_AWS:5000/api",
         auth: {
-            url: "http://l2_auth_api_AWS:5000",
+            url: "http://l1_auth_api_AWS:5000",
             id: "game-services",
             secret: "gameservices@20luminet&",
         },
@@ -53,11 +43,19 @@ export default {
     },
     sentry: {
         sentryUrl: "http://2b5b82bf699543ddb296364568bc30be@10.99.99.187:803/52",
-        logIdentifier: "fourguardians",
+        logIdentifier: "treasureisland",
         env: "AWS",
     },
     authenticateSettings: {
+        url: "http://l2_auth_api_AWS:5000",
+        id: "game-services",
+        secret: "gameservices@20luminet&",
+        requestTimeout: 10000,
+        useAuthenticate: true,
         audiences: ["api", "admin-api"],
+    },
+    userServiceSettings: {
+        url: "http://localhost:8004/api",
     },
     adminSecretKey: "asWDEer4yGdgsdqR4uqmKQZgh",
     enableCorsWs: true,

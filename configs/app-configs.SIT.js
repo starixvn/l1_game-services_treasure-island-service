@@ -9,20 +9,10 @@ export default {
             secret: "gameserver@20luminet&",
         },
         useAuthenticate: true,
-        requestTimeout: 10000,
-        placeBetTimeout: 4500,
         hitJackpotTimeout: 200000,
-        enabledApiLogs: true,
-    },
-    mainServerApiSettings: {
-        url: "http://l1_game_server_sit:5000/api",
-        auth: {
-            url: "http://l1_auth_api_sit:5000",
-            id: "game-services",
-            secret: "gameservices@20luminet&",
-        },
         requestTimeout: 10000,
-        useAuthenticate: true,
+        placeBetTimeout: 4000,
+        enabledApiLogs: true,
     },
     socketOptions: {
         pingInterval: 60 * 1000,
@@ -38,6 +28,7 @@ export default {
             dbName: "minigame",
             useNewUrlParser: true,
             useUnifiedTopology: true,
+            auto_reconnect: true,
         },
     },
     sentry: {
@@ -46,21 +37,34 @@ export default {
         env: "SIT",
     },
     authenticateSettings: {
+        url: "http://l1_auth_api_sit:5000",
+        id: "game-services",
+        secret: "gameservices@20luminet&",
+        requestTimeout: 10000,
+        useAuthenticate: true,
         audiences: ["api", "admin-api"],
+    },
+    userServiceSettings: {
+        url: "http://l1_user_service_sit:5000",
     },
     adminSecretKey: "asWDEerfOIdgsdqRTFabvmgh",
     enableCorsWs: true,
+    freeSpinLiveSeconds: 86400, // 1 day
     corsUrls: [
-        "http://l1sit.sgamesuat.com",
-        "https://l1sit.sgamesuat.com",
+        "http://localhost:7456",
+        "http://sit.sabagame.com",
+        "https://sit.sabagame.com",
+        "https://sit-admg.sabagame.com",
+        "http://sit-adm.sabagame.com",
+        "https://sit-adm.sabagame.com",
+        "http://sitm.sabagame.com",
+        "https://sitm.sabagame.com",
         "http://l1sitadm.sgamesuat.com",
         "https://l1sitadm.sgamesuat.com",
     ],
-    freeSpinLiveSeconds: 86400, // 1 day
-    bonusLiveSeconds: 127,
     metrics: {
         enable: true,
         secretKey: "6c1f0f28-70f2-46ae-b031-22624a6cd8df",
     },
-    enableMsgpackParser: true
+    enableMsgpackParser: true,
 };

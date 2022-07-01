@@ -1,5 +1,4 @@
 import { CascadingGameCron } from "sc-cascading-slot-base/src/crons";
-import cron from "cron";
 
 export default class TreasureIslandGameCron extends CascadingGameCron {
     /**
@@ -74,45 +73,8 @@ export default class TreasureIslandGameCron extends CascadingGameCron {
         this.trialModeBoardGenerator = trialModeBoardGenerator;
     }
 
-    async start() {
-        this.gameData.roundId = await this.idCountersConsumer.getLatestId("round");
-        this.gameData.freeSpinId = await this.idCountersConsumer.getLatestId("freespin");
-
-        if (this.gameData.roundId < 1 && this.gameData.freeSpinId < 1) {
-            const { roundId, freeSpinId } = await this.getLastArchiveRound();
-
-            await this.idCountersConsumer.updateLatestId("round", roundId);
-            await this.idCountersConsumer.updateLatestId("freespin", freeSpinId);
-
-            this.gameData.roundId = roundId;
-            this.gameData.freeSpinId = freeSpinId;
-
-            this.logService.logError(
-                `${this.definition.name} get roundId #${this.gameData.roundId} and freeSpinId #${this.gameData.freeSpinId} from archive.`
-            );
-        }
-
-        await this.loadUnsettledBetsToIngame();
-        await this.freeSpinsConsumer.reload();
-        await this.totalMultiplierConsumer.reload();
-
-        await this.getSettingForNewRound();
-        await this.updateExchangeRates();
-        this.boardGenerator.initialize();
+    initTrialMode() {
         this.trialModeBoardGenerator.initialize();
         this.treasureIslandTrialMode.init({ ...this.gameData.gameConfigs, name: this.definition.name });
-
-        const job = new cron.CronJob(
-            "* * * * * *",
-            () => this.proceed().catch(this.logService.logError),
-            () => {
-                this.logService.logError(
-                    `${this.definition.name} unexpectedly stopped at round #${this.gameData.roundId} because some other tasks halt it.`
-                );
-                job.start();
-            }
-        );
-
-        job.start();
     }
 }
