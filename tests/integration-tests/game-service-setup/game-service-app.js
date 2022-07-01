@@ -1,5 +1,5 @@
 import { SlotGameData, SlotGameDefinition } from "sc-slot-game-base";
-import { initAPIStub } from "sc-game-service-integration-utils";
+import { initAPIStub, stubUserService } from "sc-game-service-integration-utils";
 
 import appConfigs from "../../../src/app-configs";
 import gameSettings from "../../../src/game-settings";
@@ -8,6 +8,8 @@ import GameApp from "../../../src/game-app";
 
 export const run = async () => {
     initAPIStub(appConfigs.apiSettings.apiUrl);
+    stubUserService(appConfigs);
+
     const gameData = new SlotGameData(gameSettings.durations.wholeRound);
     const definition = new SlotGameDefinition(gameSettings);
     const container = new TreasureIslandContainerRegistry().register(appConfigs, definition, gameData);
