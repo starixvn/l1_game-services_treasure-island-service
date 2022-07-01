@@ -7,6 +7,9 @@ include:
     file: "gitlab-ci.yml"
   - project: 'ci/common-ci'
     ref: docker-enhancement
+    file: 'docker/base/before-script-docker.gitlab-ci'
+  - project: 'ci/common-ci'
+    ref: docker-enhancement
     file: 'docker/base/build-docker-image-service.gitlab-ci.yml'
 
 integration-tests:
