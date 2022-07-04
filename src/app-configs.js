@@ -1,5 +1,5 @@
 export default {
-    hostingPort: 5000,
+    hostingPort: 5001,
     apiSettings: {
         enabledApi: true,
         apiUrl: "http://api.lumigame.com",
@@ -8,7 +8,7 @@ export default {
             id: "game-server",
             secret: "gameserver@20luminet&",
         },
-        useAuthenticate: true,
+        useAuthenticate: false,
         requestTimeout: 10000,
         placeBetTimeout: 4500,
         hitJackpotTimeout: 200000,
@@ -56,7 +56,15 @@ export default {
         env: "LOCAL",
     },
     authenticateSettings: {
+        url: "http://l1_auth_api_local:5000",
+        id: "game-services",
+        secret: "gameservices@20luminet&",
+        requestTimeout: 10000,
+        useAuthenticate: false,
         audiences: ["api", "admin-api"],
+    },
+    userServiceSettings: {
+        url: "http://localhost:8004/api",
     },
     adminSecretKey: "asWDEerfOIdgsdqRTFabvmgh",
     enableCorsWs: false,

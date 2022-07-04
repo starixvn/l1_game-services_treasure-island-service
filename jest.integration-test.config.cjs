@@ -14,5 +14,6 @@ module.exports = async () => {
         globalSetup: "<rootDir>/tests/integration-tests/global-setup.cjs",
         globalTeardown: "<rootDir>/tests/integration-tests/global-teardown.cjs",
         testTimeout: 20000,
+        testSequencer: "./testSequencer.cjs",
     };
 };
