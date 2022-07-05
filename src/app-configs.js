@@ -14,16 +14,6 @@ export default {
         hitJackpotTimeout: 200000,
         enableApiLogs: true,
     },
-    mainServerApiSettings: {
-        url: "http://localhost:8080/api",
-        auth: {
-            url: "http://auth.lumigame.com",
-            id: "game-services",
-            secret: "gameservices@20luminet&",
-        },
-        requestTimeout: 10000,
-        useAuthenticate: true,
-    },
     notificationApiSettings: {
         url: "http://localhost:8004/api",
         auth: {
