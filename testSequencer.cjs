@@ -9,7 +9,7 @@ class CustomSequencer extends Sequencer {
             const testAIndex = runOrders.findIndex((file) => testA.path.includes(file));
             const testBIndex = runOrders.findIndex((file) => testB.path.includes(file));
 
-            return testBIndex - testAIndex;
+            return testAIndex - testBIndex;
         });
     }
 }
