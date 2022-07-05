@@ -9,7 +9,7 @@ export const trialModeBoardSettings = {
 };
 
 export default class TrialModeBoardGenerator extends CascadingBoardGenerator {
-    constructor(boardSettings, gameData) {
+    constructor(gameData) {
         super(trialModeBoardSettings, gameData);
     }
 }
