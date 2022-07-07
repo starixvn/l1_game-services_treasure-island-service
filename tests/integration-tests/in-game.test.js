@@ -15,10 +15,18 @@ describe("event ingame", () => {
             userClientDriver.close();
         });
 
-        it("should return game configs", (done) => {
+        beforeEach(() => {
             // Arrange
             userClientDriver = new GameClientDriver(socketOptions, initUserSession(normalUser));
 
+            // Act
+            userClientDriver.handleSignedInEvent(() => {
+                userClientDriver.sendInGameEvent();
+            });
+        });
+
+        it("should return game configs", (done) => {
+            // Arrange
             const expectedValue = {
                 coinValues: [1, 2, 5, 10, 20, 50, 100],
                 maxWinPerRound: 50000,
@@ -82,11 +90,6 @@ describe("event ingame", () => {
                     },
                 },
             };
-
-            // Act
-            userClientDriver.handleSignedInEvent(() => {
-                userClientDriver.sendInGameEvent();
-            });
 
             // Assert
             userClientDriver.handleInGameEvent((inGameData) => {
@@ -99,13 +102,7 @@ describe("event ingame", () => {
 
         it("should return totalMultiplier = 0", (done) => {
             // Arrange
-            userClientDriver = new GameClientDriver(socketOptions, initUserSession(normalUser));
             const expectedValue = 0;
-
-            // Act
-            userClientDriver.handleSignedInEvent(() => {
-                userClientDriver.sendInGameEvent();
-            });
 
             // Assert
             userClientDriver.handleInGameEvent((inGameData) => {
@@ -118,19 +115,26 @@ describe("event ingame", () => {
     });
 
     describe("when already played game", () => {
-        it("should return game configs", (done) => {
+        let userClientDriver;
+
+        beforeEach(() => {
             // Arrange
-            let userClientDriver = new GameClientDriver(socketOptions, initUserSession(haveTotalMultiplierUser));
+            userClientDriver = new GameClientDriver(socketOptions, initUserSession(haveTotalMultiplierUser));
+
             userClientDriver.handleSignedInEvent(() => {
                 userClientDriver.emit("bet", { betLevel: 2, coinValue: 10, freeSpin: true });
             });
 
+            // Act
             userClientDriver.handleEndBetEvent((endBetData) => {
                 if (endBetData?.endBet) {
                     userClientDriver.sendInGameEvent();
                 }
             });
+        });
 
+        it("should return game configs", (done) => {
+            // Arrange
             const expectedValue = {
                 coinValues: [1, 2, 5, 10, 20, 50, 100],
                 maxWinPerRound: 50000,
@@ -195,7 +199,7 @@ describe("event ingame", () => {
                 },
             };
 
-            // Act & Assert
+            // Assert
             userClientDriver.handleInGameEvent((inGameData) => {
                 if (inGameData?.gameConfigs) {
                     expect(inGameData.gameConfigs).toStrictEqual(expectedValue);
@@ -206,17 +210,6 @@ describe("event ingame", () => {
 
         it("should return totalMultiplier", (done) => {
             // Arrange
-            let userClientDriver = new GameClientDriver(socketOptions, initUserSession(haveTotalMultiplierUser));
-            userClientDriver.handleSignedInEvent(() => {
-                userClientDriver.emit("bet", { betLevel: 2, coinValue: 10, freeSpin: true });
-            });
-
-            userClientDriver.handleEndBetEvent((endBetData) => {
-                if (endBetData?.endBet) {
-                    userClientDriver.sendInGameEvent();
-                }
-            });
-
             const expectedValue = 2;
 
             // Act & Assert
