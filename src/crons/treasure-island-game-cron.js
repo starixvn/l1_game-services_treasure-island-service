@@ -1,4 +1,5 @@
 import { CascadingGameCron } from "sc-cascading-slot-base/src/crons";
+import cloneDeep from "lodash.clonedeep";
 
 export default class TreasureIslandGameCron extends CascadingGameCron {
     /**
@@ -75,6 +76,6 @@ export default class TreasureIslandGameCron extends CascadingGameCron {
 
     initTrialMode() {
         this.trialModeBoardGenerator.initialize();
-        this.treasureIslandTrialMode.init({ ...this.gameData.gameConfigs, name: this.definition.name });
+        this.treasureIslandTrialMode.init({ ...cloneDeep(this.gameData.gameConfigs), name: this.definition.name });
     }
 }

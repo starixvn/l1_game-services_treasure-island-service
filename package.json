@@ -21,8 +21,9 @@
     "license": "ISC",
     "type": "module",
     "dependencies": {
+        "lodash.clonedeep": "^4.5.0",
         "nodemon": "^2.0.4",
-        "sc-cascading-slot-base": "1.0.2-beta.63",
+        "sc-cascading-slot-base": "1.0.2-beta.64",
         "sc-trial-mode": "0.0.1-beta.12"
     },
     "devDependencies": {

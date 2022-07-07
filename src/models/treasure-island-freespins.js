@@ -1,21 +1,7 @@
 import mongoose from "mongoose";
+import { Models } from "sc-cascading-slot-base";
 
-const freeSpinSchema = {
-    id: { type: Number, required: true },
-    uid: { type: String, required: true },
-    memberId: { type: Number, required: true },
-    name: { type: String, required: true },
-    roundId: { type: Number, required: true },
-    bet: { type: Number, required: true },
-    total: { type: Number, required: true },
-    available: { type: Number, default: 0 },
-    time: { type: Date, required: true },
-    expiryTime: { type: Date, required: true },
-    playerId: { type: Number, required: true },
-    betLevel: { type: Number, required: true },
-    coinValue: { type: Number, require: true },
-    betMultiplier: { type: Number, require: true },
-};
 const modelName = "TreasureIsland_freespin";
+const freeSpinSchema = Models.FreeSpinSchema;
 
 export default mongoose.model(modelName, freeSpinSchema);
