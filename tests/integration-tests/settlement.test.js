@@ -28,7 +28,6 @@ describe("when client sends place bet request", () => {
         //Assert
         driver.on(driver.gameName, (data) => {
             if (data.finish) {
-                console.log(data);
                 expect(data.finish.result).not.toBeNull();
                 done();
             }
