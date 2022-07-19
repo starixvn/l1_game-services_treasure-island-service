@@ -5,12 +5,6 @@ include:
   - project: "ci/repos-ci/pentagon_l1_treasure_island_service"
     ref: master
     file: "gitlab-ci.yml"
-  - project: 'ci/common-ci'
-    ref: docker-enhancement
-    file: 'docker/base/before-script-docker.gitlab-ci.yml'
-  - project: 'ci/common-ci'
-    ref: docker-enhancement
-    file: 'docker/base/build-docker-image-service.gitlab-ci.yml'
 
 integration-tests:
   stage: test
