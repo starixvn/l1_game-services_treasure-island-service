@@ -5,7 +5,10 @@ include:
   - project: "ci/repos-ci/pentagon_l1_treasure_island_service"
     ref: master
     file: "gitlab-ci.yml"
-
+  - project: "ci/repos-ci/pentagon_l2_treasure_island_service"
+    ref: master
+    file: "gitlab-ci-mixing.yml"
+    
 integration-tests:
   stage: test
   needs: ['unit-test-js']
