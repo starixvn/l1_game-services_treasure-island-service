@@ -2,14 +2,15 @@ export default {
     hostingPort: 5000,
     apiSettings: {
         enabledApi: true,
-        apiUrl: "http://l2_game_api_local_1:5000",
-        authUrl: "http://l2_auth_api_local_1:5000",
+        apiUrl: "http://l1_game_api_local_1:5000",
+        authUrl: "http://l1_auth_api_local_1:5000",
         client: {
             id: "game-server",
             secret: "gameserver@20luminet&",
         },
         useAuthenticate: true,
         requestTimeout: 10000,
+        hitJackpotTimeout: 200000,
         placeBetTimeout: 4000,
         enabledApiLogs: true,
     },
@@ -22,7 +23,7 @@ export default {
     },
     enabledLogs: true,
     database: {
-        url: "mongodb://lmn_backend:LmnBackend@10.10.50.13:37104/?replicaSet=L2pLocal",
+        url: "mongodb://lmn_backend:LmnBackend@10.10.50.12:39101,10.10.50.13:39101,10.10.50.14:39101/?replicaSet=L1pLocal&appName=treasureisland",
         options: {
             dbName: "minigame",
             useNewUrlParser: true,
@@ -31,12 +32,12 @@ export default {
         },
     },
     sentry: {
-        sentryUrl: "https://acb36eb835d948d68c1aad9873754d51@sentry.lumigame.com/27",
-        logIdentifier: "three-cards",
-        env: "LOCAL_1",
+        sentryUrl: "https://13f39b8359404ed5aec23655e64ccf78@sentry.lumigame.com/2",
+        logIdentifier: "treasureisland",
+        env: "LOCAL-1",
     },
     authenticateSettings: {
-        url: "http://l2_auth_api_local_1:5000",
+        url: "http://l1_auth_api_local_1:5000",
         id: "game-services",
         secret: "gameservices@20luminet&",
         requestTimeout: 10000,
@@ -44,7 +45,7 @@ export default {
         audiences: ["api", "admin-api"],
     },
     userServiceSettings: {
-        url: "http://l2_user_service_local_1:5000",
+        url: "http://l1_user_service_local_1:5000",
     },
     adminSecretKey: "asWDEerfOIdgsdqRTFabvmgh",
     enableCorsWs: true,
@@ -52,15 +53,15 @@ export default {
         "http://localhost:7456",
         "http://localhost:7000",
         "http://localhost:3000",
-        "https://l2-games1.lumigame.com",
-        "https://l2-admin1.lumigame.com",
-        "http://l2-m1.lumigame.com",
-        "https://l2-m1.lumigame.com",
+        "http://l1-games1.lumigame.com",
+        "https://l1-games1.lumigame.com",
+        "http://l1-admin1.lumigame.com",
+        "https://l1-admin1.lumigame.com",
     ],
+    freeSpinLiveSeconds: 86400, // 1 day
     metrics: {
         enable: true,
         secretKey: "6c1f0f28-70f2-46ae-b031-22624a6cd8df",
     },
-    freeSpinLiveSeconds: 86400, // 1 day
-    bonusLiveSeconds: 127,
+    enableMsgpackParser: false,
 };
