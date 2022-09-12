@@ -1,9 +1,9 @@
 import { createDummyUser } from "sc-game-service-integration-utils";
 
-export const haveTotalMultiplierUser = { memberId: 2, memberName: "HaveTotalMultiplierUser" };
-export const placeBetUser = { memberId: 4, memberName: "PlaceBetUser" };
+export const haveTotalMultiplierUser = { playerId: 2, playerName: "HaveTotalMultiplierUser" };
+export const placeBetUser = { playerId: 4, playerName: "PlaceBetUser" };
 
 export const createDummyUsers = async (currency) => {
-    await createDummyUser(haveTotalMultiplierUser.memberId, haveTotalMultiplierUser.memberName, currency);
-    await createDummyUser(placeBetUser.memberId, placeBetUser.memberName, currency);
+    await createDummyUser(haveTotalMultiplierUser.playerId, haveTotalMultiplierUser.playerName, currency);
+    await createDummyUser(placeBetUser.playerId, placeBetUser.playerName, currency);
 };

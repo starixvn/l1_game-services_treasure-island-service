@@ -1,7 +1,7 @@
 import { createDummyUser } from "sc-game-service-integration-utils";
 import { TreasureIslandRounds, TreasureIslandTotalMultipliers } from "../../../src/models";
 
-export const queryHistoryUser = { memberId: 3, memberName: "QueryHistoryUser", UID: "" };
+export const queryHistoryUser = { playerId: 3, playerName: "QueryHistoryUser", UID: "" };
 
 export const playerMultipliers = {
     _id: "62b2b4a962eb9107dc13a016",
@@ -22,7 +22,7 @@ export const playerMultipliers = {
 };
 
 export const stubHistoryData = async (currency) => {
-    const { userInfo, userSession } = await createDummyUser(queryHistoryUser.memberId, queryHistoryUser.memberName, currency);
+    const { userInfo, userSession } = await createDummyUser(queryHistoryUser.playerId, queryHistoryUser.playerName, currency);
 
     queryHistoryUser.UID = userSession.userId;
     playerMultipliers.name = userSession.playerName;
