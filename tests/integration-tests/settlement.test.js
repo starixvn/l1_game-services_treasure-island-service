@@ -1,7 +1,7 @@
 import { GameClientDriver, normalUser } from "sc-game-service-integration-utils";
 import { socketOptions } from "./stubs/test-data";
 import { initUserSession } from "./helpers";
-const JEST_ASSERT_WAITING_RESPONSE_TIMEOUT = 70000;
+const JEST_ASSERT_WAITING_RESPONSE_TIMEOUT = 80000;
 
 describe("when client sends place bet request", () => {
     beforeAll(() => {

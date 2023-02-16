@@ -48,20 +48,7 @@ export default {
         url: "http://l1_user_service_sit:5000",
     },
     adminSecretKey: "asWDEerfOIdgsdqRTFabvmgh",
-    enableCorsWs: true,
     freeSpinLiveSeconds: 86400, // 1 day
-    corsUrls: [
-        "http://localhost:7456",
-        "http://sit.sabagame.com",
-        "https://sit.sabagame.com",
-        "https://sit-admg.sabagame.com",
-        "http://sit-adm.sabagame.com",
-        "https://sit-adm.sabagame.com",
-        "http://sitm.sabagame.com",
-        "https://sitm.sabagame.com",
-        "http://l1sitadm.sgamesuat.com",
-        "https://l1sitadm.sgamesuat.com",
-    ],
     metrics: {
         enable: true,
         secretKey: "6c1f0f28-70f2-46ae-b031-22624a6cd8df",

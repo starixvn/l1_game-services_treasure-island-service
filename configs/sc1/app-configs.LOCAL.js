@@ -48,17 +48,6 @@ export default {
         url: "http://l1_user_service_local:5000",
     },
     adminSecretKey: "asWDEerfOIdgsdqRTFabvmgh",
-    enableCorsWs: true,
-    corsUrls: [
-        "http://localhost:7456",
-        "http://10.5.10.14:7456",
-        "http://localhost:7000",
-        "http://localhost:3000",
-        "http://games.lumigame.com",
-        "https://games.lumigame.com",
-        "http://admin.lumigame.com",
-        "https://admin.lumigame.com",
-    ],
     freeSpinLiveSeconds: 600, // 1 day
     metrics: {
         enable: true,

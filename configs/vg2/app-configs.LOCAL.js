@@ -22,7 +22,7 @@ export default {
     },
     enabledLogs: true,
     database: {
-        url: "mongodb://lmn_backend:LmnBackend@10.10.50.13:37101/?replicaSet=L2Local&appName=treasureisland",
+        url: "mongodb://lmn_backend:LmnBackend@10.10.50.12:39200,10.10.50.13:39200,10.10.50.14:39200/?replicaSet=L2Local&appName=treasureisland",
         options: {
             dbName: "minigame",
             useNewUrlParser: true,
@@ -47,16 +47,6 @@ export default {
         url: "http://l2_user_service_local:5000",
     },
     adminSecretKey: "asWDEerfOIdgsdqRTFabvmgh",
-    enableCorsWs: true,
-    corsUrls: [
-        "http://localhost:7456",
-        "http://localhost:7000",
-        "http://localhost:3000",
-        "https://l2-games.lumigame.com",
-        "https://l2-admin.lumigame.com",
-        "http://l2-m.lumigame.com",
-        "https://l2-m.lumigame.com",
-    ],
     freeSpinLiveSeconds: 86400, // 1 day
     bonusLiveSeconds: 127,
 };

@@ -6102,14 +6102,14 @@ sc-base-database@1.10.1:
     mongoose "^5.9.25"
     sc-common "1.8.1"
 
-sc-cascading-slot-base@1.0.2:
-  version "1.0.2"
-  resolved "http://npm.lumigame.com/sc-cascading-slot-base/-/sc-cascading-slot-base-1.0.2.tgz#38af4d4c6ff77137ff6daac69ef18169287504b3"
-  integrity sha512-bNT2LCDEeNecrbQZXSvmzxJiXNcfSSmNdQOzlYNHT5KvZYK24e0/vaQsZAOQbXxg/ZT6SjTjHEf6ijUMNv5FmA==
+sc-cascading-slot-base@1.0.6:
+  version "1.0.6"
+  resolved "http://npm.lumigame.com/sc-cascading-slot-base/-/sc-cascading-slot-base-1.0.6.tgz#264d0960ef94cb64353121c91c55166fc0aad416"
+  integrity sha512-qzg3rnRFnM60IA54t8gnvFL0THirSDf4qYIo0+khPFicj2/hHfNSgjp+VZWSS62dexYyyyTtcYa28dRXJIkVPg==
   dependencies:
     mathjs "^10.6.1"
     sc-slot-board-generator "1.0.0"
-    sc-slot-game-base "1.5.1"
+    sc-slot-game-base "1.6.0"
 
 sc-common@1.8.1:
   version "1.8.1"
@@ -6122,10 +6122,10 @@ sc-common@1.8.1:
     mongoose-long "^0.3.0"
     numeral "^2.0.6"
 
-sc-game-base@3.1.1:
-  version "3.1.1"
-  resolved "https://npm.lumigame.com/sc-game-base/-/sc-game-base-3.1.1.tgz#7885acd0754d0f21bff9822cb236641f9c079338"
-  integrity sha512-/GFT+tJNePmSA4uXsnGAwlysPbB4k4uXU+h8MwxTetcvjUoiw8f/zeuGZduN16T4xz8odymmpwA3r+ZdoXtAyA==
+sc-game-base@3.1.1, sc-game-base@3.3.0:
+  version "3.3.0"
+  resolved "http://npm.lumigame.com/sc-game-base/-/sc-game-base-3.3.0.tgz#54bc50bd598c3f06f86fcd5359c85a0af2cbf5f6"
+  integrity sha512-T8UpNZV4m6QcSdVfYBOSkTJnns2qmliBuvf9S6x+DV6QxNyaM0dQWaHZE0P+CWceXIWgd7tiA7AiKk8Art7yUg==
   dependencies:
     awilix "^4.3.1"
     axios "^0.20.0"
@@ -6164,14 +6164,14 @@ sc-slot-board-generator@1.0.0:
     chance "^1.1.7"
     ramda "^0.28.0"
 
-sc-slot-game-base@1.5.1:
-  version "1.5.1"
-  resolved "https://npm.lumigame.com/sc-slot-game-base/-/sc-slot-game-base-1.5.1.tgz#98fe0e7310ed000b0516c75245896585deedb124"
-  integrity sha512-EZUre0pbF7Zx0pnezHfCrAlkiFGMtbbzJX75KMVyI0Xo9eYKlEG0I5+jCL89UXhdHbmSd+gk4dtjSr1vcB5drQ==
+sc-slot-game-base@1.6.0:
+  version "1.6.0"
+  resolved "http://npm.lumigame.com/sc-slot-game-base/-/sc-slot-game-base-1.6.0.tgz#d5ee3ed1a21c3486929381358f0d7841315b0b91"
+  integrity sha512-7wGXSkCejY4DZonH/2uTELuN6Bh1Yq2101YySvlkPE95BCmYjjlfCniYcqE+at4iV6BJqKXhW+BvhRTUfpWRZg==
   dependencies:
     chance "^1.1.7"
     lodash "^4.17.20"
-    sc-game-base "3.1.1"
+    sc-game-base "3.3.0"
 
 sc-trial-mode@1.0.1:
   version "1.0.1"
