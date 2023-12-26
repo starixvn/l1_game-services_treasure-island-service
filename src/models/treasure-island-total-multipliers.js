@@ -1,7 +1,14 @@
 import mongoose from "mongoose";
-import { Models } from "sc-cascading-slot-base";
 
 const modelName = "TreasureIsland_multiplier";
-const totalMultiplier = Models.TotalMultiplierSchema;
+const totalMultiplier = new mongoose.Schema({
+    uid: { type: String },
+    playerId: { type: String },
+    name: { type: String, required: true },
+    ended: { type: Boolean, default: false },
+    time: { type: Date },
+    endTime: { type: Date },
+    rounds: { type: [RoundTotalMultiplierSchema] },
+});
 
 export default mongoose.model(modelName, totalMultiplier);
