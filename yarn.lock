@@ -5040,10 +5040,10 @@ mkdirp@^1.0.4:
   resolved "http://npm.lumigame.com/mkdirp/-/mkdirp-1.0.4.tgz#3eb5ed62622756d79a5f0e2a221dfebad75c2f7e"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
-moment@^2.27.0:
-  version "2.29.3"
-  resolved "http://npm.lumigame.com/moment/-/moment-2.29.3.tgz#edd47411c322413999f7a5940d526de183c031f3"
-  integrity sha512-c6YRvhEo//6T2Jz/vVtYzqBzwvPT95JBQ+smCytzf7c50oMZRsR/a4w88aD34I+/QVSfnoAnSBFPJHItlOMJVw==
+moment@^2.29.4:
+  version "2.30.1"
+  resolved "http://npm.lumigame.com/moment/-/moment-2.30.1.tgz#f8c91c07b7a786e30c59926df530b4eac96974ae"
+  integrity sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==
 
 mongodb@3.7.3:
   version "3.7.3"
@@ -6084,20 +6084,20 @@ sc-api-client@1.4.0:
   dependencies:
     axios "^0.19.2"
 
-sc-base-apis@1.18.0:
-  version "1.18.0"
-  resolved "https://npm.lumigame.com/sc-base-apis/-/sc-base-apis-1.18.0.tgz#70cf9bae9e5366b2b46f04bb8df1b1fe2c45b70b"
-  integrity sha512-rAbnKrJ0PkiEy5nKIdGXEv6Hzytde+VYmHqTO751g4eW2ooOQJEa0K8IKd6p975BSLYu/JlTeCWyLOHvEXASrA==
+sc-base-apis@1.18.0, sc-base-apis@1.18.3-beta.0:
+  version "1.18.3-beta.0"
+  resolved "http://npm.lumigame.com/sc-base-apis/-/sc-base-apis-1.18.3-beta.0.tgz#861103e661f13162befea20a2df6719342d2095d"
+  integrity sha512-01cDmlZQeostnNaS22Y2qjykf/djoIqfxdHVtXotje/26+frEe9UeubA27+C3nc11/VBT0sikMiMuVaTMl7IJQ==
   dependencies:
-    moment "^2.27.0"
+    moment "^2.29.4"
     sc-api-client "1.4.0"
-    sc-base-database "1.10.1"
+    sc-base-database "1.11.1"
     sc-common "1.8.1"
 
-sc-base-database@1.10.1:
-  version "1.10.1"
-  resolved "http://npm.lumigame.com/sc-base-database/-/sc-base-database-1.10.1.tgz#ffa166dafa4ec9220fb42990b973bc80489de232"
-  integrity sha512-VQh7D72S3JcpDlZKU0QL40EVEionhnjXWTOP5pCr/NYPX4vMY7W+5U10p5Lr0KkeNtOM1hCN/IYtxzhlQOtrpg==
+sc-base-database@1.10.1, sc-base-database@1.11.1:
+  version "1.11.1"
+  resolved "http://npm.lumigame.com/sc-base-database/-/sc-base-database-1.11.1.tgz#25d850e83b4e07f7e6e26f3d2d1eecc11145c2cf"
+  integrity sha512-DxuFRNDDSHQglSGFsXnrcDXVs+BRxSiILBNRbJ5RistCcSbs+k7QiwYMGhCSv3FOz9J/On9jh2y3MNst/he2BA==
   dependencies:
     mongoose "^5.9.25"
     sc-common "1.8.1"
