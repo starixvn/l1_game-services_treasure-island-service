@@ -229,4 +229,4 @@ const socketOptions = {
     proxyRoute: "/socket.io",
 };
 
-export { game, gameConfig, currencyData, rounds, socketOptions, playerFreeSpins, playerMultipliers };
+export { currencyData, game, gameConfig, playerFreeSpins, playerMultipliers, rounds, socketOptions };
