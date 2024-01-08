@@ -2,7 +2,7 @@ import { SlotGameData, SlotGameDefinition } from "sc-slot-game-base";
 import { initAPIStub, stubUserService } from "sc-game-service-integration-utils";
 import { normalUser, errorUser, internalServerErrorUser, endGameErrorUser } from "sc-game-service-integration-utils/src/stubs/user-stub";
 import { placeBetUser, haveTotalMultiplierUser } from "../stubs/user-stub";
-import appConfigs from "../../../src/app-configs";
+import appConfigs from "../../../src/app-configs.IGT";
 import gameSettings from "../../../src/game-settings";
 import TreasureIslandContainerRegistry from "../../../src/treasure-island-container-registry";
 import GameApp from "../../../src/game-app";
