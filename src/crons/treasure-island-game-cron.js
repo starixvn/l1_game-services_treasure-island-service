@@ -1,5 +1,5 @@
-import { CascadingGameCron } from "sc-cascading-slot-base/src/crons";
 import cloneDeep from "lodash.clonedeep";
+import { CascadingGameCron } from "sc-cascading-slot-base/src/crons";
 
 export default class TreasureIslandGameCron extends CascadingGameCron {
     /**
@@ -77,5 +77,12 @@ export default class TreasureIslandGameCron extends CascadingGameCron {
     initTrialMode() {
         this.trialModeBoardGenerator.initialize();
         this.treasureIslandTrialMode.init({ ...cloneDeep(this.gameData.gameConfigs), name: this.definition.name });
+    }
+
+    async updateCurrencyGroupGames() {
+        this.gameData.currencyGroupGames = await this.currencyGroupGamesRepository
+            .find({ gameId: this.definition.id, enabled: true }, "groupId minBet maxBet maxBetPerChoices chips coinValues maxWinPerRound defaultCoinValue")
+            .lean()
+            .exec();
     }
 }

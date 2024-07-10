@@ -1,7 +1,8 @@
-import { asValue, asClass } from "awilix";
+import { asClass, asValue } from "awilix";
 import * as Slot from "sc-cascading-slot-base";
+import InGameConsumer from "./consumers/in-game-consumer";
 import TreasureIslandGameCron from "./crons/treasure-island-game-cron";
-import { TreasureIslandFreeSpins, TreasureIslandTotalMultipliers, TreasureIslandRounds } from "./models";
+import { TreasureIslandFreeSpins, TreasureIslandRounds, TreasureIslandTotalMultipliers, currencyGroupGames } from "./models";
 import { TreasureIslandTrialMode, TrialModeBoardGenerator, TrialModeRoundCalculator } from "./trial-mode";
 
 export default class TreasureIslandContainerRegistry extends Slot.CascadingSlotContainerRegistry {
@@ -27,6 +28,7 @@ export default class TreasureIslandContainerRegistry extends Slot.CascadingSlotC
             roundsRepository: asValue(TreasureIslandRounds),
             freeSpinsRepository: asValue(TreasureIslandFreeSpins),
             totalMultiplierRepository: asValue(TreasureIslandTotalMultipliers),
+            currencyGroupGamesRepository: asValue(currencyGroupGames()),
         });
     }
 
@@ -35,6 +37,14 @@ export default class TreasureIslandContainerRegistry extends Slot.CascadingSlotC
 
         this.container.register({
             gameCron: asClass(TreasureIslandGameCron).singleton().proxy(),
+        });
+    }
+
+    registerConsumers() {
+        super.registerConsumers();
+
+        this.container.register({
+            inGameConsumer: asClass(InGameConsumer).singleton().proxy(),
         });
     }
 }
