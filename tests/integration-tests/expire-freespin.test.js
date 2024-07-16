@@ -1,10 +1,10 @@
-import { playerFreeSpins } from "./stubs/test-data";
-import { middlewares } from "sc-common";
 import mongoose from "mongoose";
-import { TreasureIslandTotalMultipliers } from "../../src/models";
 import { gameNotifications } from "sc-base-database";
-import configs from "../../src/app-configs";
+import { middlewares } from "sc-common";
+import configs from "../../src/app-configs.IGT";
 import GameSettings from "../../src/game-settings";
+import { TreasureIslandTotalMultipliers } from "../../src/models";
+import { playerFreeSpins } from "./stubs/test-data";
 const JEST_ASSERT_WAITING_RESPONSE_TIMEOUT = 80000;
 
 describe("event expire freeSpin", () => {

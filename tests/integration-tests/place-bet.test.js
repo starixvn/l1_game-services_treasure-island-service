@@ -1,11 +1,11 @@
-import { GameClientDriver } from "sc-game-service-integration-utils";
 import { gameConfigs } from "sc-base-database";
+import { GameClientDriver } from "sc-game-service-integration-utils";
 
-import { socketOptions } from "./stubs/test-data";
-import { initUserSession } from "./helpers";
 import mongoose from "mongoose";
 import { middlewares } from "sc-common";
-import configs from "../../src/app-configs";
+import configs from "../../src/app-configs.IGT";
+import { initUserSession } from "./helpers";
+import { socketOptions } from "./stubs/test-data";
 import { placeBetUser } from "./stubs/user-stub";
 
 const JEST_ASSERT_WAITING_RESPONSE_TIMEOUT = 80000;
@@ -30,6 +30,7 @@ describe("event place bet", () => {
             userClientDriver.handleEndBetEvent((endBetData) => {
                 if (endBetData?.endBet) {
                     expect(endBetData.endBet).toStrictEqual(expectedEndBet);
+                    userClientDriver.close();
                     done();
                 }
             });
@@ -47,6 +48,7 @@ describe("event place bet", () => {
             userClientDriver.handleSignedInEvent(async () => {
                 await middlewares.database.configureDatabase(mongoose, configs.database);
                 await gameConfigs.updateOne({ name: "treasureisland" }, { enabled: false });
+                console.log("update db");
                 await new Promise((r) => setTimeout(r, 61000));
                 userClientDriver.emit("bet", { betLevel: 4, coinValue: 10, freeSpin: false });
 
@@ -55,6 +57,7 @@ describe("event place bet", () => {
                     if (endBetData?.endBet) {
                         expect(endBetData.endBet).toStrictEqual(expectedEndBet);
                         await gameConfigs.updateOne({ name: "treasureisland" }, { enabled: true });
+                        userClientDriver.close();
                         done();
                     }
                 });
