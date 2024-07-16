@@ -13,7 +13,7 @@ export default Object.assign(appConfigs, {
         url: "http://l1_user_service_local:5000",
     },
     database: {
-        url: "mongodb://localhost:27017",
+        url: "mongodb://127.0.0.1:27017",
         options: {
             dbName: "game-service-test-db",
             useNewUrlParser: true,
