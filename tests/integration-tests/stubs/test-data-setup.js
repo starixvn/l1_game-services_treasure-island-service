@@ -7,13 +7,13 @@ import {
     createGameConfig,
     createPartnerConfig,
 } from "sc-game-service-integration-utils";
-import { createDummyUsers as createCascadingSlotDummyUsers } from "./user-stub";
 import { createCurrencyGroupGames } from "./currency-group-games-stub";
 import { stubHistoryData } from "./history-query-stubs";
+import { createDummyUsers as createCascadingSlotDummyUsers } from "./user-stub";
 
-import configs from "../../../src/app-configs";
-import { TreasureIslandRounds, TreasureIslandTotalMultipliers, TreasureIslandFreeSpins } from "../../../src/models";
-import { game, gameConfig, currencyData, rounds, playerFreeSpins, playerMultipliers } from "./test-data";
+import configs from "../../../src/app-configs.IGT";
+import { TreasureIslandFreeSpins, TreasureIslandRounds, TreasureIslandTotalMultipliers } from "../../../src/models";
+import { currencyData, game, gameConfig, playerFreeSpins, playerMultipliers, rounds } from "./test-data";
 
 const connectDatabase = async () => {
     await middlewares.database.configureDatabase(mongoose, configs.database);
